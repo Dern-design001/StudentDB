@@ -92,10 +92,11 @@ app.delete('/api/students/:id', async (req, res) => {
 });
 
 // 4. Serve Frontend
-app.use(express.static(path.join(__dirname, 'dist/studentdata/browser')));
+const frontendPath = path.join(__dirname, 'dist/studentdata/browser');
+app.use(express.static(frontendPath));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/studentdata/browser/index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 app.listen(port, () => {
