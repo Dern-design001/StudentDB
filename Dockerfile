@@ -13,7 +13,6 @@ COPY package*.json ./
 RUN npm install --production
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/server.js ./server.js
-COPY --from=build /app/.env ./ .env (optional)
 
 EXPOSE 3000
 CMD ["npm", "start"]
