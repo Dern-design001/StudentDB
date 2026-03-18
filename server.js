@@ -20,15 +20,10 @@ const driver = neo4j.driver(
   )
 );
 
-// Verify Connection
-(async () => {
-  try {
-    await driver.verifyConnectivity();
-    console.log('✅ Connected to Neo4j successfully');
-  } catch (error) {
-    console.error('❌ Neo4j connection failed:', error.message);
-  }
-})();
+// Verify Connection (non-fatal - server still starts even if DB is unreachable)
+driver.verifyConnectivity()
+  .then(() => console.log('✅ Connected to Neo4j successfully'))
+  .catch((err) => console.warn('⚠️ Neo4j not reachable yet:', err.message));
 
 // API Routes
 
