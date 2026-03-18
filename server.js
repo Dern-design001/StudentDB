@@ -95,7 +95,7 @@ app.delete('/api/students/:id', async (req, res) => {
 const frontendPath = path.join(__dirname, 'dist/studentdata/browser');
 app.use(express.static(frontendPath));
 
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
